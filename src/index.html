@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Tech</title>
+</head>
+<body>
+  <video autoplay playsinline></video>
+
+<script>
+  const mediaStreamContrains = {
+    video: true,
+    audio: true
+  };
+  const localVideo = document.querySelector('video');
+  function gotLocalMediaStream (mediaStream) {
+    console.log(mediaStream)
+    localVideo.srcObject = mediaStream;
+  }
+  function handleLocalMediaStreamError (error) {
+    console.log('navigator.getUserMedia error: ', error)
+  }
+  navigator.mediaDevices.getUserMedia(mediaStreamContrains)
+    .then(gotLocalMediaStream)
+    .catch(handleLocalMediaStreamError)
+</script>
+</body>
+</html>
